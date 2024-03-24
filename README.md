@@ -2,7 +2,7 @@
 ## A demo Travel planner
 An application for tourists to assist them in making travel planning and organize their trips. This project will create detailed travel itineraries, the travel planner will help users to make efficient trip planning, will give real-time weather information, customizable routes, and transportation options.
 
-Techstack: React, Redux, CSS Framework, Weather API, Google place API, Node.js, JWT, MongoDB/MySQL, Swagger, Git
+Techstack: Python, Django, JavaScript, HTML, CSS, MongoDB/MySQL, API, Git, Weather API, Google place API, 
 
 User Requirements:
 1. Trip Planning: Users should be able to search for destinations and create detailed travel itineraries easily.
