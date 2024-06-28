@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+{% block content %}
+<div class="results">
+    <h2>Search Results</h2>
+    <ul>
+        {% for destination in destinations %}
+        <li>{{ destination.name }}</li>
+        {% empty %}
+        <li>No destinations found matching your search criteria.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
