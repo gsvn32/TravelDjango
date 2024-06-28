@@ -3,11 +3,12 @@
 <div class="hero">
     <h1>Welcome to TravelDjango: A demo Travel planner</h1>
     <h2>Begin your new adventure here</h2>
-    <form action="#">
-        <input type="text" placeholder="Source">
-        <input type="text" placeholder="Destination">
-        <input type="date" placeholder="Travel Date">
-        <input type="date" placeholder="Return Date">
+    <form action="{% url 'search' %}", method="POST">
+        {% csrf_token %}
+        <input type="text" name="source" placeholder="Source" required>
+        <input type="text" name="destination" placeholder="Destination" required>
+        <input type="date" name="travel_date" placeholder="Travel Date" required>
+        <input type="date" name="return_date" placeholder="Return Date">
         <button type="submit">Search</button>
     </form>
 </div>
