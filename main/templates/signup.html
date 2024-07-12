@@ -1,13 +1,49 @@
 {% extends "master.html" %}
 {% block content %}
 <section>
-            <h1>Sign Up</h1>
-            <form action="signup.php" method="POST"> <!-- Change action and method as needed -->
-                <input type="text" name="fullname" placeholder="Full Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Sign Up</button>
-            </form>
-            <!-- Add any additional content (e.g., terms of service checkbox) -->
-        </section>
+    <section class="sign-up">
+       
+        <h1>Sign Up</h1>
+        <form id="signupForm" action="signup" method="POST">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error" style="color: red;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <div class="form-group">
+                <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </section>
+    <a href="signin">Alredy Registered? Sign in</a>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            // Add JavaScript validation here if necessary
+            const fullname = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!fullname || !email || !password) {
+                event.preventDefault();
+                alert('All fields are required.');
+            }
+
+            // Additional validation logic can be added here
+        });
+    </script>
+</section>
 {% endblock %}
+
+
+
+
+
+    

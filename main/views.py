@@ -38,16 +38,6 @@ def contactus(request):
     return HttpResponseNotAllowed(['GET'])
 
     
-def signup(request):
-    """
-    Handle GET request to render the signup page.
-    """
-    if request.method == 'GET':
-        return render(request, 'signup.html', context={})
-    # Optionally handle other HTTP methods or return a 405 Method Not Allowed response
-    return HttpResponseNotAllowed(['GET'])
-
-
 def destination(request):
     """
     Handle GET request to render the destination page.
@@ -103,3 +93,27 @@ def SigninView(request):
     if request.method == 'GET':
         # For GET requests (initial render of the form)
         return render(request, 'signin.html',context={})
+    
+def SignUpView(request):
+    """
+    Handle POST request to render the sign up page.
+    """
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        fullname = request.POST.get('fullname')
+        user = authenticate(request, username=email, password=password)
+        
+        if user is not None:
+            login(request, user)
+            # Redirect to a success page, e.g., home page
+            return redirect('/')  # Replace 'home' with your actual URL name
+        else:
+            # Return an invalid login error message
+            messages.error(request, 'Invalid email or password.')
+            return render(request, 'signup.html')
+    if request.method == 'GET':
+        # For GET requests (initial render of the form)
+        return render(request, 'signup.html',context={})
+    
+

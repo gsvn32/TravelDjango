@@ -3,7 +3,7 @@
 <div class="hero">
     <h1>Welcome to TravelDjango: A demo Travel planner</h1>
     <h2>Begin your new adventure here</h2>
-    <form action="{% url 'search' %}", method="POST">
+    <form id="searchForm" action="search", method="POST">
         {% csrf_token %}
         <input type="text" name="source" placeholder="Source" required>
         <input type="text" name="destination" placeholder="Destination" required>
