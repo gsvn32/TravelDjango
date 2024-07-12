@@ -11,14 +11,26 @@
     <header>
         <div class="container">
             <nav>
-                <ul>
+                <div class="nav-left">
+                    <ul>
                     <li><a href="/">TravelDjango</a></li>
                     <li><a href="/destination">Destinations</a></li>
                     <li><a href="/about">About</a></li>
                     <li><a href="/contactus">Contact</a></li>
-                    <li><a href="/signin">Sign In</a></li>
-                    <li><a href="/signup">Sign Up</a></li>
                 </ul>
+                </div>
+                <div class="nav-right">
+                    <ul>
+                    {% if user.is_authenticated %}
+                        <li><span>Hi, {{ user.first_name }}</span></li>
+                        <li><a href="/logout">Logout</a></li>
+                    {% else %}
+                        <li><a href="/signin">Sign In</a></li>
+                        <li><a href="/signup">Sign Up</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
+                
             </nav>
         </div>
     </header>

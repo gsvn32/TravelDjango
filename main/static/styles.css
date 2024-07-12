@@ -19,7 +19,51 @@ body {
     margin: auto;
     overflow: hidden;
 }
+nav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+   
+}
 
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left ul, .nav-right ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-left ul li, .nav-right ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.nav-left ul li a, .nav-right ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    transition: background 0.3s ease;
+}
+
+.nav-left ul li a:hover, .nav-right ul li a:hover {
+    background: #444;
+    border-radius: 4px;
+}
+
+.nav-right ul li span {
+    color: #fff;
+    padding: 10px 15px;
+    margin-right: 5px;
+}
+
+.nav-right {
+    margin-left: 47%;
+}
 header {
     background: #333;
     color: #fff;
@@ -32,19 +76,6 @@ header .container {
     align-items: center;
 }
 
-nav ul {
-    list-style: none;
-}
-
-nav ul li {
-    display: inline-block;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
 
 .hero {
     

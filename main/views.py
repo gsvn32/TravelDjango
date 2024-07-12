@@ -5,9 +5,11 @@ from django.views import View
 from django.db.models import Q
 from .models import Destination
 from django.template import RequestContext
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.middleware.csrf import get_token
 from django.contrib import messages
+from django.contrib.auth.models import User
+
 
 def main(request):
     """
@@ -84,6 +86,7 @@ def SigninView(request):
         
         if user is not None:
             login(request, user)
+
             # Redirect to a success page, e.g., home page
             return redirect('/')  # Replace 'home' with your actual URL name
         else:
@@ -102,18 +105,25 @@ def SignUpView(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         fullname = request.POST.get('fullname')
-        user = authenticate(request, username=email, password=password)
-        
-        if user is not None:
-            login(request, user)
-            # Redirect to a success page, e.g., home page
-            return redirect('/')  # Replace 'home' with your actual URL name
-        else:
-            # Return an invalid login error message
-            messages.error(request, 'Invalid email or password.')
+        if User.objects.filter(username=email).exists():
+            # Return an user already exists error message
+            messages.error(request, 'user already exists ')
             return render(request, 'signup.html')
+        else:
+            # Create a new user
+            user = User.objects.create_user(username=email, email=email, first_name=fullname)
+            user.set_password(password)
+            user.save()
+            # Redirect to a success page, e.g., home page
+            return redirect('signin')  # Replace 'home' with your actual URL name
     if request.method == 'GET':
         # For GET requests (initial render of the form)
         return render(request, 'signup.html',context={})
     
 
+def logoutView(request):
+    if request.method == 'GET':
+        # For GET requests (initial render of the form)
+        
+        logout(request)
+        return render(request, 'index.html',context={})
